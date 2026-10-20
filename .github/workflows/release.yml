@@ -1,0 +1,27 @@
+name: Release
+
+# A v* tag publishes profiles.json as a release asset. ncSender downloads it
+# from releases/latest, so a profile reaches users only when it is released.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: node scripts/validate.mjs
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" profiles.json \
+            --title "$GITHUB_REF_NAME" \
+            --notes "$(git tag -l --format='%(contents)' "$GITHUB_REF_NAME")"
