@@ -63,5 +63,7 @@ the wizard checks.
   (`src/app/src/features/Config/assets/MachineDefaults`, GPLv3).
 - Onefinity Journeyman 48x32 (SLB-EXT, closed loop): a user's working
   settings, [tmuka/cnc-xy-swap](https://github.com/tmuka/cnc-xy-swap/blob/main/original/firmware-settings-2026-10-15.txt).
+- Onefinity Foreman 48x48 (SLB-EXT, closed loop): a user's working settings
+  shared on the ncSender Discord.
 
 GPL-3.0, see `LICENSE`.
